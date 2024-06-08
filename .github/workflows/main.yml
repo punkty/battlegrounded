@@ -19,11 +19,11 @@ jobs:
         run: npm install
       - name: Build the project
         env:
-          REACT_APP_CLIENT_ID: ${{ secrets.CLIENT_ID }}
-          REACT_APP_CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+          BATTLEGROUNDED_CLIENT_ID: ${{ secrets.BATTLEGROUNDED_CLIENT_ID }}
+          BATTLEGROUNDED_CLIENT_SECRET: ${{ secrets.BATTLEGROUNDED_CLIENT_SECRET }}
         run: npm run build
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.TOKEN }}
           publish_dir: ./build
