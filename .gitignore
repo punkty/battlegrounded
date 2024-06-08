@@ -1,0 +1,22 @@
+# Dependency directories
+/node_modules
+
+# Environment variables file
+.env
+
+# Build files
+/build
+/dist
+
+# Cache files
+/.cache
+
+# Coverage directory used by tools like istanbul
+/coverage
+
+# Automatically generated files
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
