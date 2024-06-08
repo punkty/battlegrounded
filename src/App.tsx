@@ -7,7 +7,7 @@ const App = () => {
             <header className="App-header">
                 {/* Test Tailwind CSS Setup */}
                 <div className="text-center bg-blue-500 text-white py-4">
-                    battlegrounded | Hearthstone Battlegrounds
+                    battlegrounded
                 </div>
                 <Cards />
 
