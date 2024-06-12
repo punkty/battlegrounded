@@ -1,38 +1,37 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
 import type { AxiosError } from 'axios';
-import type { GetCardsApiResponse } from './CardInterfaces';
+import type { GetCardsApiResponse, CardRequestParams } from './CardInterfaces';
 import { getAccessToken } from './auth';
 
-const axiosBaseQuery =
-    ({ baseUrl }: { baseUrl: string }) =>
-        async ({ url, method = 'get', data, params }) => {
-            let accessToken = await getAccessToken();
-            if (!accessToken) {
-                throw new Error('Unable to obtain access token');
-            }
+const axiosBaseQuery = ({ baseUrl }: { baseUrl: string }) =>
+    async ({ url, method = 'get', data, params }: { url: string; method?: string; data?: GetCardsApiResponse; params?: CardRequestParams }) => {
+        let accessToken = await getAccessToken();
+        if (!accessToken) {
+            throw new Error('Unable to obtain access token');
+        }
 
-            try {
-                const result = await axios({
-                    url: baseUrl + url,
-                    method,
-                    data,
-                    params: {
-                        ...params,
-                        access_token: accessToken
-                    },
-                });
-                return { data: result.data };
-            } catch (axiosError) {
-                let err = axiosError as AxiosError;
-                return {
-                    error: {
-                        status: err.response?.status,
-                        data: err.response?.data || err.message,
-                    },
-                };
-            }
-        };
+        try {
+            const result = await axios({
+                url: baseUrl + url,
+                method,
+                data,
+                params: {
+                    ...params,
+                    access_token: accessToken
+                },
+            });
+            return { data: result.data };
+        } catch (axiosError) {
+            let err = axiosError as AxiosError;
+            return {
+                error: {
+                    status: err.response?.status,
+                    data: err.response?.data || err.message,
+                },
+            };
+        }
+    };
 // "https://api.blizzard.com/hearthstone/cards?gameMode=battlegrounds&minionType=all&pageSize=450&sort=tier%3Aasc%2Cname%3Aasc&textFilter=champion&locale=en_"
 export const cardsApiSlice = createApi({
     baseQuery: axiosBaseQuery({ baseUrl: "https://api.blizzard.com/hearthstone/cards" }),

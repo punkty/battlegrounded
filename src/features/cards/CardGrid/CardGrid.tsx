@@ -1,6 +1,6 @@
 // CardGrid.tsx (Tailwind CSS version)
 import type React from 'react';
-import type { CardFullData } from './../cardsApiSlice';
+import type { CardFullData } from './../CardInterfaces';
 
 interface CardGridProps {
     cards: CardFullData[];
