@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const CLIENT_ID = process.env.BATTLEGROUNDED_CLIENT_ID;
-const CLIENT_SECRET = process.env.BATTLEGROUNDED_CLIENT_SECRET;
+const CLIENT_ID = process.env.BATTLEGROUNDED_CLIENT_ID || "";
+const CLIENT_SECRET = process.env.BATTLEGROUNDED_CLIENT_SECRET || "";
 
 export const getAccessToken = async (): Promise<string | undefined> => {
     try {

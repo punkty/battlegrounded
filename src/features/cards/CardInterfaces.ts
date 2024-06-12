@@ -1,15 +1,11 @@
 
 export interface CardRequestParams {
-    url: string;
-    data: any;
-    params: {
-        namespace: string;
-        "Battlenet-Namespace": string;
-        locale: string;
-        gameMode: string;
-        tier: number;
-        page: number;
-    };
+    namespace: string;
+    "Battlenet-Namespace": string;
+    locale: string;
+    gameMode: string;
+    tier: number;
+    page: number;
 }
 
 export interface GetCardsApiResponse {
