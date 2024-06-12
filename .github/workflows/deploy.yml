@@ -10,18 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3action
         with:
           node-version: '20'
+
       - name: Install dependencies
         run: npm install
+
       - name: Build the project
         env:
-          BATTLEGROUNDED_CLIENT_ID: ${{ secrets.BATTLEGROUNDED_CLIENT_ID }}
-          BATTLEGROUNDED_CLIENT_SECRET: ${{ secrets.BATTLEGROUNDED_CLIENT_SECRET }}
+          REACT_APP_CLIENT_ID: ${{ secrets.BATTLEGROUNDED_CLIENT_ID }}
+          REACT_APP_CLIENT_SECRET: ${{ secrets.BATTLEGROUNDED_CLIENT_SECRET }}
         run: npm run build
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
